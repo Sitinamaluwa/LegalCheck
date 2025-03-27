@@ -58,29 +58,31 @@
         <h1>LegalCheck.lk - Copyright Checker</h1>
         <p>Upload a video to check for copyright issues:</p>
         <input type="file" id="videoUpload" accept="video/*">
-        <button onclick="uploadVideo()">Upload & Check</button>
+        <button id="uploadBtn">Upload & Check</button>
         <p id="result"></p>
     </div>
 
     <script>
-        function uploadVideo() {
-            let file = document.getElementById("videoUpload").files[0];
-            let result = document.getElementById("result");
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("uploadBtn").addEventListener("click", function () {
+                let file = document.getElementById("videoUpload").files[0];
+                let result = document.getElementById("result");
 
-            if (!file) {
-                result.innerHTML = "❌ Please upload a video file.";
-                result.style.color = "red";
-                return;
-            }
+                if (!file) {
+                    result.innerHTML = "❌ Please upload a video file.";
+                    result.style.color = "red";
+                    return;
+                }
 
-            result.innerHTML = "🔄 Uploading & checking for copyright issues...";
-            result.style.color = "blue";
+                result.innerHTML = "🔄 Uploading & checking for copyright issues...";
+                result.style.color = "blue";
 
-            setTimeout(() => {
-                result.innerHTML = "⚠️ Warning! This video may contain copyrighted content.";
-                result.style.color = "red";
-            }, 3000);
-        }
+                setTimeout(() => {
+                    result.innerHTML = "⚠️ Warning! This video may contain copyrighted content.";
+                    result.style.color = "red";
+                }, 3000);
+            });
+        });
     </script>
 </body>
 </html>
