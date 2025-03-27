@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalCheck - Copyright Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 60%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>LegalCheck.lk - Copyright Checker</h1>
+    <p>Enter a URL to check if it's copyrighted:</p>
+    <input type="text" id="urlInput" placeholder="Enter website or YouTube link...">
+    <button onclick="checkCopyright()">Check</button>
+    <p id="result"></p>
+
+    <script>
+        function checkCopyright() {
+            let url = document.getElementById("urlInput").value;
+            let result = document.getElementById("result");
+
+            if (!url) {
+                result.innerHTML = "Please enter a valid URL.";
+                return;
+            }
+
+            // Simulating a copyright check (real database required in future)
+            if (url.includes("youtube.com")) {
+                result.innerHTML = "⚠️ This content may be copyrighted!";
+                result.style.color = "red";
+            } else {
+                result.innerHTML = "✅ No copyright issues found!";
+                result.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>
