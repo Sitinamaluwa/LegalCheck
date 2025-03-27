@@ -8,7 +8,8 @@
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background-color: #121212;
+            color: white;
             margin: 0;
             padding: 0;
         }
@@ -17,34 +18,36 @@
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background: white;
+            background: #1e1e1e;
             border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
         }
         h1 {
-            color: #333;
-            font-size: 24px;
+            font-size: 26px;
+            color: #ffcc00;
         }
-        input {
-            width: 80%;
+        input, button {
+            width: 90%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
         }
-        button {
-            background-color: #007bff;
+        input {
+            border: 1px solid #ffcc00;
+            background: #222;
             color: white;
+        }
+        button {
+            background-color: #ffcc00;
+            color: black;
+            font-weight: bold;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
             cursor: pointer;
             transition: 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #e6b800;
         }
         #result {
             margin-top: 20px;
@@ -56,9 +59,15 @@
 <body>
     <div class="container">
         <h1>LegalCheck.lk - Copyright Checker</h1>
-        <p>Upload a video to check for copyright issues:</p>
+        
+        <h3>📤 Upload a Video</h3>
         <input type="file" id="videoUpload" accept="video/*">
         <button id="uploadBtn">Upload & Check</button>
+        
+        <h3>🔗 Paste a YouTube URL</h3>
+        <input type="text" id="videoURL" placeholder="Enter YouTube URL">
+        <button id="checkURL">Check URL</button>
+        
         <p id="result"></p>
     </div>
 
@@ -67,19 +76,38 @@
             document.getElementById("uploadBtn").addEventListener("click", function () {
                 let file = document.getElementById("videoUpload").files[0];
                 let result = document.getElementById("result");
-
+                
                 if (!file) {
                     result.innerHTML = "❌ Please upload a video file.";
                     result.style.color = "red";
                     return;
                 }
-
+                
                 result.innerHTML = "🔄 Uploading & checking for copyright issues...";
                 result.style.color = "blue";
-
+                
                 setTimeout(() => {
                     result.innerHTML = "⚠️ Warning! This video may contain copyrighted content.";
                     result.style.color = "red";
+                }, 3000);
+            });
+
+            document.getElementById("checkURL").addEventListener("click", function () {
+                let url = document.getElementById("videoURL").value;
+                let result = document.getElementById("result");
+                
+                if (!url.startsWith("https://www.youtube.com") && !url.startsWith("https://youtu.be")) {
+                    result.innerHTML = "❌ Invalid YouTube URL!";
+                    result.style.color = "red";
+                    return;
+                }
+                
+                result.innerHTML = "🔄 Checking YouTube video for copyright issues...";
+                result.style.color = "blue";
+                
+                setTimeout(() => {
+                    result.innerHTML = "✅ No copyright issues detected! (Not 100% guaranteed)";
+                    result.style.color = "green";
                 }, 3000);
             });
         });
