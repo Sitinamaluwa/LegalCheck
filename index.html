@@ -6,34 +6,65 @@
     <title>LegalCheck - Copyright Checker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            margin: 50px;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
         }
         input {
-            padding: 10px;
-            width: 60%;
-            margin-bottom: 10px;
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
         }
         button {
-            padding: 10px 20px;
-            background-color: blue;
+            background-color: #007bff;
             color: white;
             border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         #result {
             margin-top: 20px;
+            font-size: 18px;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>LegalCheck.lk - Copyright Checker</h1>
-    <p>Enter a URL to check if it's copyrighted:</p>
-    <input type="text" id="urlInput" placeholder="Enter website or YouTube link...">
-    <button onclick="checkCopyright()">Check</button>
-    <p id="result"></p>
+    <div class="container">
+        <h1>LegalCheck.lk - Copyright Checker</h1>
+        <p>Enter a URL to check if it's copyrighted:</p>
+        <input type="text" id="urlInput" placeholder="Enter website or YouTube link...">
+        <button onclick="checkCopyright()">Check</button>
+        <p id="result"></p>
+    </div>
 
     <script>
         function checkCopyright() {
@@ -41,11 +72,12 @@
             let result = document.getElementById("result");
 
             if (!url) {
-                result.innerHTML = "Please enter a valid URL.";
+                result.innerHTML = "❌ Please enter a valid URL.";
+                result.style.color = "red";
                 return;
             }
 
-            // Simulating a copyright check (real database required in future)
+            // Simulating a copyright check
             if (url.includes("youtube.com")) {
                 result.innerHTML = "⚠️ This content may be copyrighted!";
                 result.style.color = "red";
