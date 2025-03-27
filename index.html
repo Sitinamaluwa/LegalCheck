@@ -25,10 +25,6 @@
             color: #333;
             font-size: 24px;
         }
-        p {
-            font-size: 16px;
-            color: #666;
-        }
         input {
             width: 80%;
             padding: 12px;
@@ -60,31 +56,30 @@
 <body>
     <div class="container">
         <h1>LegalCheck.lk - Copyright Checker</h1>
-        <p>Enter a URL to check if it's copyrighted:</p>
-        <input type="text" id="urlInput" placeholder="Enter website or YouTube link...">
-        <button onclick="checkCopyright()">Check</button>
+        <p>Upload a video to check for copyright issues:</p>
+        <input type="file" id="videoUpload" accept="video/*">
+        <button onclick="uploadVideo()">Upload & Check</button>
         <p id="result"></p>
     </div>
 
     <script>
-        function checkCopyright() {
-            let url = document.getElementById("urlInput").value;
+        function uploadVideo() {
+            let file = document.getElementById("videoUpload").files[0];
             let result = document.getElementById("result");
 
-            if (!url) {
-                result.innerHTML = "❌ Please enter a valid URL.";
+            if (!file) {
+                result.innerHTML = "❌ Please upload a video file.";
                 result.style.color = "red";
                 return;
             }
 
-            // Simulating a copyright check
-            if (url.includes("youtube.com")) {
-                result.innerHTML = "⚠️ This content may be copyrighted!";
+            result.innerHTML = "🔄 Uploading & checking for copyright issues...";
+            result.style.color = "blue";
+
+            setTimeout(() => {
+                result.innerHTML = "⚠️ Warning! This video may contain copyrighted content.";
                 result.style.color = "red";
-            } else {
-                result.innerHTML = "✅ No copyright issues found!";
-                result.style.color = "green";
-            }
+            }, 3000);
         }
     </script>
 </body>
